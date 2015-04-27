@@ -21,19 +21,19 @@ def printEnteredText(enteredText):
     var.set(enteredText)
     textBox.delete(0,len(enteredText))
 
-entryButton = Button(top, text = "Print", command= lambda: printEnteredText(textBox.get()))
-entryButton.place(x=550, y=347)
+entryButton = Button(top, text = "Print", command= lambda: printEnteredText(textBox.get()), height = 3, width = 10)
+entryButton.place(x=550, y=335)
 
-topLeftButton = Button(top, text = "demo", command= lambda: printCoordinates(0,0))
+topLeftButton = Button(top, text = "Button 1", command= lambda: printCoordinates(0,0), height = 5, width = 10)
 topLeftButton.place(x=0, y=0)
 
-topRightButton = Button(top, text = "demo2", command= lambda: printCoordinates(952,0))
-topRightButton.place(x=952, y=0)
+topRightButton = Button(top, text = "Button 2", command= lambda: printCoordinates(952,0), height = 5, width = 10)
+topRightButton.place(x=922, y=0)
 
-bottomLeftButton = Button(top, text = "demo3", command= lambda: printCoordinates(0,575))
-bottomLeftButton.place(x=0, y=575)
+bottomLeftButton = Button(top, text = "Button 3", command= lambda: printCoordinates(0,575), height = 5, width = 10)
+bottomLeftButton.place(x=0, y=515)
 
-bottomRightButton = Button(top, text = "demo4", command= lambda: printCoordinates(952,575))
-bottomRightButton.place(x=952, y=575)
+bottomRightButton = Button(top, text = "Button 4", command= lambda: printCoordinates(952,575), height = 5, width = 10)
+bottomRightButton.place(x=922, y=515)
 
 top.mainloop()
