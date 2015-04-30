@@ -1,6 +1,6 @@
 __author__ = 'Nicole Mercer nmercer@student.bridgew.edu'
 
-from tkinter import *
+from Tkinter import *
 
 top = Tk()
 top.geometry("1000x600")
@@ -21,19 +21,19 @@ def printEnteredText(enteredText):
     var.set(enteredText)
     textBox.delete(0,len(enteredText))
 
-entryButton = Button(top, text = "Print", command= lambda: printEnteredText(textBox.get()), height = 3, width = 10)
+entryButton = Button(top, text = "Print", command= lambda: printEnteredText(textBox.get()), height = 3, width = 10, activebackground = "red")
 entryButton.place(x=550, y=335)
 
-topLeftButton = Button(top, text = "Button 1", command= lambda: printCoordinates(0,0), height = 5, width = 10)
+topLeftButton = Button(top, text = "Button 1", command= lambda: printCoordinates(0,0), height = 5, width = 10, activebackground = "red")
 topLeftButton.place(x=0, y=0)
 
-topRightButton = Button(top, text = "Button 2", command= lambda: printCoordinates(952,0), height = 5, width = 10)
+topRightButton = Button(top, text = "Button 2", command= lambda: printCoordinates(952,0), height = 5, width = 10, activebackground = "red")
 topRightButton.place(x=922, y=0)
 
-bottomLeftButton = Button(top, text = "Button 3", command= lambda: printCoordinates(0,575), height = 5, width = 10)
+bottomLeftButton = Button(top, text = "Button 3", command= lambda: printCoordinates(0,575), height = 5, width = 10, activebackground = "red")
 bottomLeftButton.place(x=0, y=515)
 
-bottomRightButton = Button(top, text = "Button 4", command= lambda: printCoordinates(952,575), height = 5, width = 10)
+bottomRightButton = Button(top, text = "Button 4", command= lambda: printCoordinates(952,575), height = 5, width = 10, activebackground = "red")
 bottomRightButton.place(x=922, y=515)
 
 top.mainloop()
