@@ -19,6 +19,7 @@ __author__ = 'spencer nuttall'
 #Usercommands = []
 #Usercommandlocations = []
 import sys
+success = False
 
 def getCommandindex(commandname):
     global Usercommands
@@ -101,7 +102,7 @@ def ConsolidateFileData():
 
 
 def FileLineToString(line):
-    fixedline = ' '
+    fixedline = ''
     fixedline+=line[0]
     fixedline+= ' '
     for elements in line[1]:
@@ -117,13 +118,19 @@ def WriteCommandFile():
         outputfile.write("%s\n" % properline)
 
 
-
 def CheckFileValid(filename):
     filetype = filename[-4:]
 
     if filetype != '.txt':
         raise TypeError('All files must be .txt files only!!')
 
+
+def execute(interfaceFile, userFile):
+    global Usercommands
+    ReadInterfaceFile(interfaceFile)
+    ReadUserFile(userFile)
+    ConsolidateFileData()
+    WriteCommandFile()
 
 def main():
     global Usercommands
