@@ -1,0 +1,34 @@
+Spencer Nuttall
+Senior Design Seminar
+Spring 2015
+Santore
+Semester Project Manual - Translator
+
+My part of the project involved the reading in of two text files with the “.txt” extension.  One of the text files contained a set of User-readable commands such as “click button1”, “click toptextbox”, or  “type hello World!”, referred to as the UserInput file.  The second file maps the user-readable commands such as “button1” or “toptextbox” to their corresponding location on the screen like “100, 100” or 500,700; which is referred to as the “Interface File”.  These files are read in by translator.py and combined into a standardized output in a file called “commands.txt”.  This new file will read in by interpret command files that will send the instructions to rdpy to be sent over the network.  This program can, and should be run separately, with the arguments: UserInterfaceFile, UserInputFile; both of these files must have the “.txt” file extension, or an exception will be thrown!  Both of these files are required for execution and are case-sensitive to each other.  This means that if there is a “button1” in the UserInputFile, but “Button1” in the UserInterfaceFile, the module will not execute.  This may change in a future release to prevent issues, but currently allows for creative naming schemes to be developed by the user.
+	
+The formats of the two files are straightforward and intuitive.  The format of the UserInputFile is: keyword space command; where the keyword is either ‘click’ or ‘type’, 
+and command either one or more characters (if it’s to be typed) or a label (for click commands).  
+For the UserInterfaceFile the format is label space x-location space y-location.  
+The following are examples of a UserInputFile and a UserInterfaceFile:
+	UserInputFile Example:
+		click button1
+click button2
+type HelloWorld
+click button3
+type 100 700
+click button4
+		UserInterfaceFile Example:
+			button1 100 100
+button2 50 90
+button3 1000 200
+button4 100 3
+
+	Internally, the translator program was implemented exactly as described in the second version of our design document.  
+	There are four larger logic methods that call upon smaller helper methods as needed to keep the code clean and maintain 
+	the single responsibility rule.  The four larger logical methods are 
+	ReadInterfaceFile(interfacefilename), ReadUserFile(UserFilename), ConsolidateFileData(), and WriteCommandFile().  
+	The first two methods, as the names imply read the inputted files into global variable lists for future reference by the other 
+	methods.  ConsolidateFileData(), is the method which combines the data from the global variables of the User-inputted files into another list that contains tuples, 
+	where each tuple in the list represents one line of the final output file to be written.  
+	The WriteCommandFile() method simply converts each tuple in the list created in the ConsolidateFileData() method to a string and 
+	writes it to the commands.txt file as a single line each.
