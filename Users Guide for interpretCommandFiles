@@ -1,0 +1,76 @@
+Thomas Larsen
+RDPY Command Reader
+4/29/15
+
+Users Guide for
+Interpreting Command Files
+
+	This part of the Remote Desktop Python project is to read a parsed list of commands, and interpret them to be sent over to the remote desktop. This process involves reading a file with a list of commands beginning with either “C” or “T”. If a “C” is encountered in the command file it expects to see two digits to the right of it (separated by a space), which represent the coordinates to be clicked. A “T” represents a word that should be typed. Anything that comes after the “T” in the same line will be read as a character and be typed, that way numbers can be typed, as well as represent coordinates. This programs input is a command file and the output is a list of commands to be sent over to the remote desktop. A sample command file will look like such.
+
+C 100 100
+C 50 90
+T Hello World
+C 1000 200
+T 100 700
+C 100 3
+
+Sample command file input, If an unknown letter key is given the program will return a message indicating the format is wrong.
+
+The output to this file would look as such:
+
+[(100, 100), (50, 90), 'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd', (1000, 200), '1', '0', '0', ' ', '7', '0', '0', (100, 3)]
+
+Sample command file output, This is a list of tuples for coordinates, and characters for keys to be typed.
+
+
+
+
+
+
+The following methods help accomplish this goal:
+verifyCommandFile()
+	This method checks to see if the command file “commands” exists
+
+	Inputs:
+		None
+	
+	Returns:
+		True: File exists
+		False: File does not exist
+
+verifyFileSyntax()
+	This method checks to make sure each line begins with either a 'C' or a 'T'.
+
+	If the line begins with a 'C' it further checks to make sure there are two digits separated by a 	space
+
+	Inputs:
+		The file to read from (Already opened)
+
+	Returns:
+		True: The syntax was valid
+		False: There was an error in the command file
+
+sendCoordinates()
+	Inserts the coordinate tuples into the list of commands on the end. (commandList)
+
+	Inputs:
+		a line from the command file with the form  'C <number> <number>'
+
+	Returns:
+		Nothing
+
+sendTextData()
+	Inserts the data to be typed into the command list, one letter (key) at a time
+
+	Inputs:
+		a line from the command file with the form  'T <anything>'
+
+	Returns:
+		Nothing
+
+readCommandFile()
+	The main function of the program, reads the file and calls all subsequent information
+	Inputs:
+		Nothing
+	Returns:
+		the completed commandList for the command file. (To be parsed and sent over)
